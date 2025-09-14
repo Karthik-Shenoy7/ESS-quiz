@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Science & Sustainability Quiz - Complete 196 Question Bank</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ESS-Specific Theme Overrides */
+        :root {
+            /* Environmental Green Color Scheme */
+            --color-primary: #22c55e;
+            --color-primary-hover: #16a34a;
+            --color-primary-active: #15803d;
+            --color-teal-500: #22c55e;
+            --color-teal-400: #4ade80;
+            --color-teal-300: #86efac;
+            
+            /* Environmental Background Colors */
+            --color-bg-1: rgba(34, 197, 94, 0.08); /* Light green */
+            --color-bg-2: rgba(101, 163, 13, 0.08); /* Lime green */
+            --color-bg-3: rgba(21, 128, 61, 0.08); /* Forest green */
+            --color-bg-4: rgba(245, 158, 11, 0.08); /* Warning amber */
+        }
+        
+        /* Environmental-themed background pattern */
+        .eco-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(21, 128, 61, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, var(--color-background) 0%, rgba(34, 197, 94, 0.05) 100%);
+            z-index: -1;
+            animation: ecoFloat 25s ease-in-out infinite;
+        }
+        
+        @keyframes ecoFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-8px) rotate(1deg); }
+            66% { transform: translateY(-4px) rotate(-0.5deg); }
+        }
+        
+        /* Environmental icon styling */
+        .eco-icon {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        
+        .leaf {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            border-radius: 0 100% 0 100%;
+            transform-origin: bottom;
+            animation: leafSway 3s ease-in-out infinite;
+        }
+        
+        .leaf-1 { left: 10px; animation-delay: 0s; }
+        .leaf-2 { right: 10px; animation-delay: 1s; transform: scaleX(-1); }
+        
+        @keyframes leafSway {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+        
+        /* Update score circle for environmental theme */
+        .score-circle {
+            background: conic-gradient(#22c55e 0deg, rgba(34, 197, 94, 0.1) 360deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Environmental Background Pattern -->
+    <div class="eco-background"></div>
+    
+    <!-- Admin Gear Icon -->
+    <div class="admin-gear" id="adminGear" title="Admin Panel">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="m12 1 1.28 2.5L16 4l.5 2.75L19 8l1 3-1 3-2.5 1.25L16 20l-2.72.5L12 23l-1.28-2.5L8 20l-.5-2.75L5 16l-1-3 1-3 2.5-1.25L8 4l2.72-.5z"></path>
+        </svg>
+    </div>
+
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen active">
+        <div class="container">
+            <div class="welcome-card">
+                <div class="quiz-logo">
+                    <div class="eco-icon">
+                        <div class="leaf leaf-1"></div>
+                        <div class="leaf leaf-2"></div>
+                    </div>
+                </div>
+                <h1>🌍 Environmental Science & Sustainability Quiz</h1>
+                <p class="welcome-subtitle">Master environmental concepts with our comprehensive 196-question database!</p>
+                
+                <div class="quiz-info">
+                    <div class="info-item">
+                        <span class="info-icon">🌱</span>
+                        <span>196 ESS Questions</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🎲</span>
+                        <span>40 Random Selection</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">⏱️</span>
+                        <span>20 Minutes</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🔄</span>
+                        <span>Shuffled Options</span>
+                    </div>
+                </div>
+
+                <div class="shuffle-notice">
+                    <div class="notice-icon">🌿</div>
+                    <div class="notice-content">
+                        <h3>Comprehensive ESS Assessment System</h3>
+                        <p>From our extensive 196-question environmental science database covering ecosystems, pollution, renewable energy, and sustainability topics, 40 questions are randomly selected. Both question order and answer choices are dynamically shuffled to ensure authentic knowledge testing.</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="studentName" class="form-label">🎓 Enter Your Name</label>
+                    <input type="text" id="studentName" class="form-control" placeholder="Your full name" required>
+                </div>
+                
+                <button id="startQuiz" class="btn btn--primary btn--lg btn--full-width">
+                    🌍 Start Environmental Quiz
+                </button>
+                
+                <p style="text-align: center; margin-top: 16px; font-size: 12px; color: var(--color-text-secondary);">
+                    Topics: Ecosystems • Biodiversity • Water & Air Pollution • Renewable Energy • Sustainability
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quizScreen" class="screen">
+        <div class="quiz-header">
+            <div class="container">
+                <div class="quiz-header-content">
+                    <div class="quiz-progress">
+                        <span class="question-counter">
+                            Question <span id="currentQuestion">1</span> of <span id="totalQuestions">40</span>
+                        </span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
+                    <div class="timer">
+                        <div class="timer-icon">⏰</div>
+                        <span id="timeDisplay">20:00</span>
+                    </div>
+                </div>
+                <div class="shuffle-indicator">
+                    <span class="shuffle-badge">🌱 Random from 196 ESS Questions</span>
+                    <span class="shuffle-badge">🔄 Options Randomized</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="quiz-content">
+                <div class="question-card">
+                    <h2 id="questionText" class="question-title"></h2>
+                    <div id="optionsContainer" class="options-container">
+                        <!-- Shuffled options will be inserted here -->
+                    </div>
+                </div>
+
+                <div class="quiz-navigation">
+                    <button id="prevQuestion" class="btn btn--secondary">← Previous</button>
+                    <button id="nextQuestion" class="btn btn--primary">Next →</button>
+                    <button id="submitQuiz" class="btn btn--primary hidden">🌍 Submit Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen">
+        <div class="container">
+            <div class="results-card">
+                <div class="results-header">
+                    <div class="results-icon">
+                        <div class="score-circle">
+                            <span id="scorePercent">0%</span>
+                        </div>
+                    </div>
+                    <h1>🌍 ESS Quiz Completed!</h1>
+                    <p class="student-name">Excellent work, <span id="resultStudentName"></span>! 🌿</p>
+                    <p class="shuffle-completion">You completed a unique environmental science assessment from our 196-question database</p>
+                </div>
+
+                <div class="results-stats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="correctAnswers">0</span>
+                        <span class="stat-label">✅ Correct</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="wrongAnswers">0</span>
+                        <span class="stat-label">❌ Wrong</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="unansweredQuestions">0</span>
+                        <span class="stat-label">❓ Unanswered</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="timeTaken">0:00</span>
+                        <span class="stat-label">⏱️ Time</span>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button id="reviewAnswers" class="btn btn--primary btn--lg">🔍 Review Answers</button>
+                    <button id="retakeQuiz" class="btn btn--secondary btn--lg">🔄 New Random Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Answer Review Screen -->
+    <div id="reviewScreen" class="screen">
+        <div class="review-header">
+            <div class="container">
+                <div class="review-header-content">
+                    <h1>📋 Environmental Science Review</h1>
+                    <div class="review-subtitle">
+                        <span class="shuffle-note">🌍 Your personalized ESS question set</span>
+                    </div>
+                    <button id="backToResults" class="btn btn--secondary">← Back to Results</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="review-summary">
+                <div class="summary-item summary-correct">
+                    <span class="summary-icon">✅</span>
+                    <span class="summary-text"><span id="reviewCorrect">0</span> Correct</span>
+                </div>
+                <div class="summary-item summary-wrong">
+                    <span class="summary-icon">❌</span>
+                    <span class="summary-text"><span id="reviewWrong">0</span> Wrong</span>
+                </div>
+                <div class="summary-item summary-unanswered">
+                    <span class="summary-icon">❓</span>
+                    <span class="summary-text"><span id="reviewUnanswered">0</span> Unanswered</span>
+                </div>
+            </div>
+
+            <div id="reviewContainer" class="review-container">
+                <!-- Review questions with shuffled options will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔐 ESS Admin Login</h2>
+                <button class="modal-close" id="closeAdminModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="adminUsername" class="form-label">Username</label>
+                    <input type="text" id="adminUsername" class="form-control" placeholder="ESSADMIN">
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword" class="form-label">Password</label>
+                    <input type="password" id="adminPassword" class="form-control" placeholder="Enter password">
+                </div>
+                <div id="adminError" class="error-message hidden"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="adminLogin" class="btn btn--primary">🌍 Login</button>
+                <button id="cancelAdminLogin" class="btn btn--secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminScreen" class="screen">
+        <div class="admin-header">
+            <div class="container">
+                <div class="admin-header-content">
+                    <h1>🌍 ESS Admin Dashboard - 196 Question Bank</h1>
+                    <div class="admin-actions">
+                        <button id="exportData" class="btn btn--secondary">📊 Export Data</button>
+                        <button id="adminLogout" class="btn btn--outline">🚪 Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="admin-stats">
+                <div class="admin-stat-card">
+                    <h3>🎓 Total Students</h3>
+                    <span class="admin-stat-number" id="totalParticipants">0</span>
+                </div>
+                <div class="admin-stat-card">
+                    <h3>📊 Average Score</h3>
+                    <span class="admin-stat-number" id="averageScore">0%</span>
+                </div>
+                <div class="admin-stat-card">
+                    <h3>🌱 Question Bank</h3>
+                    <span class="admin-stat-number">196</span>
+                </div>
+                <div class="admin-stat-card">
+                    <h3>✅ Completion Rate</h3>
+                    <span class="admin-stat-number" id="completionRate">100%</span>
+                </div>
+            </div>
+
+            <div class="admin-table-container">
+                <h2>📈 Student Performance Analytics</h2>
+                <p>📌 Each student receives 40 randomly selected questions from our comprehensive Environmental Science & Sustainability database covering:</p>
+                <ul style="margin: 16px 0; padding-left: 20px; color: var(--color-text-secondary);">
+                    <li>🌿 <strong>Ecosystems & Biodiversity:</strong> Food webs, energy flow, conservation</li>
+                    <li>💧 <strong>Water & Air Pollution:</strong> BOD, COD, AQI, emission sources</li>
+                    <li>🌱 <strong>Soil & Waste Management:</strong> Contamination, recycling, e-waste</li>
+                    <li>⚡ <strong>Renewable Energy:</strong> Solar, wind, biomass, geothermal</li>
+                    <li>♻️ <strong>Sustainability:</strong> 3Rs, environmental acts, green technology</li>
+                </ul>
+                
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>👤 Student Name</th>
+                            <th>🎯 Score</th>
+                            <th>✅ Correct</th>
+                            <th>❌ Wrong</th>
+                            <th>❓ Unanswered</th>
+                            <th>⏱️ Time</th>
+                            <th>📅 Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="participantTableBody">
+                        <!-- Student data will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="ess_quiz_app.js"></script>
+</body>
+</html>
